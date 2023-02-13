@@ -1,0 +1,35 @@
+[Unit]
+Description=portfwd  A simple and efficient TCP/UDP port forwarder
+After=network.target
+
+[Service]
+Environment=PORTFWD_CONFIG_FILE_PATH=/etc/portfwd/config.yaml
+ExecStart=/usr/bin/portfwd
+ExecStop=/bin/kill -9 $MAINPID
+ProtectSystem=strict
+PrivateDevices=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectProc=invisible
+PrivateUsers=true
+ProtectHome=true
+UMask=0077
+RestrictNamespaces=true
+LockPersonality=true
+NoNewPrivileges=true
+ProtectKernelModules=true
+SystemCallArchitectures=native
+ProtectHostname=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictRealtime=true
+ProtectControlGroups=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+ProtectClock=true
+RemoveIPC=true
+CapabilityBoundingSet=
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+
+[Install]
+WantedBy=multi-user.target
