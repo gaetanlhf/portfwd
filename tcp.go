@@ -4,10 +4,12 @@ import (
 	"io"
 	"log"
 	"net"
+
+	"github.com/libp2p/go-reuseport"
 )
 
 func tcpForward(forward ForwardStruct) {
-	listener, err := net.Listen(forward.Protocol, forward.To)
+	listener, err := reuseport.Listen(forward.Protocol, forward.To)
 
 	if err != nil {
 		log.Printf("The connection failed: %v", err)
