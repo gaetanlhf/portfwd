@@ -6,6 +6,8 @@ After=network.target
 Environment=PORTFWD_CONFIG_FILE_PATH=/etc/portfwd/config.yaml
 ExecStart=/usr/bin/portfwd
 ExecStop=/bin/kill -9 $MAINPID
+User=portfwd
+Group=portfwd
 ProtectSystem=strict
 PrivateDevices=true
 PrivateTmp=true
@@ -29,7 +31,7 @@ ProtectClock=true
 RemoveIPC=true
 CapabilityBoundingSet=
 SystemCallFilter=@system-service
-SystemCallFilter=~@privileged @resources
+SystemCallFilter=~@privileged
 
 [Install]
 WantedBy=multi-user.target
