@@ -27,7 +27,7 @@ func tcpForward(protocol string, from string, to string) {
 		if err != nil {
 			log.Printf("The connection failed: %v", err)
 			defer conn.Close()
-			return
+			continue
 		}
 
 		go func() {
