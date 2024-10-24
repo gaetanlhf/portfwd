@@ -26,7 +26,7 @@ func udpForward(forward ForwardStruct) {
 		if err != nil {
 			log.Printf("The connection failed: %v", err)
 		}
-		defer dst.Close()
+		dst.Close()
 
 		sliceDst = append(sliceDst, dst)
 	}
